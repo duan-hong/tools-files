@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+packageName: mybatis-generator-plugin
+Built-By: gradle 2.1
+create-date: 2015-07-16 16:46:51
+

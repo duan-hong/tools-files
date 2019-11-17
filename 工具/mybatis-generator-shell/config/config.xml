@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+  <!-- 数据库驱动   
+  <classPathEntry location="D:\j2eeide\jdbclib\ojdbc7.jar" />
+  -->
+  <context id="context1" targetRuntime="MyBatis3">
+  	<!-- 禁用mybatis插件自动生成的注释 -->  
+	<commentGenerator>
+		<property name="suppressDate" value="true" />
+		<property name="suppressAllComments" value="true" />
+	</commentGenerator>
+	
+	<!-- 数据库连接串配置 -->  
+    <jdbcConnection 
+    	connectionURL="jdbc:oracle:thin:@10.218.34.26:1521:KFCS" 
+    	driverClass="oracle.jdbc.driver.OracleDriver" 
+    	password="1qaz!QAZ" userId="jzh" />
+    	
+    <!-- 类型转换器 --> 
+	<javaTypeResolver type="org.mybatis.generator.internal.types.JavaTypeResolver4MvneImpl">
+        <!-- 
+            true：使用BigDecimal对应DECIMAL和 NUMERIC数据类型
+            false：默认,
+                scale>0;length>18：使用BigDecimal;
+                scale=0;length[10,18]：使用Long；
+                scale=0;length[5,9]：使用Integer；
+                scale=0;length<5：使用Short；
+         -->
+        <property name="forceBigDecimals" value="false"/>
+    </javaTypeResolver>
+    
+    <!-- java实体类配置 -->  	
+    <javaModelGenerator 
+    	targetPackage="com.ai.channel.mgmt.dao.mapper.bo" 
+    	targetProject="chan-srv-mgmt-core/src/main/java" />
+    
+    <!-- sqlMap映射xml配置 -->  
+    <sqlMapGenerator 
+    	targetPackage="mybatis.mapper" 
+    	targetProject="chan-srv-mgmt-core/src/main/resources" />
+   <!-- mybatis接口类配置 -->   	
+    <javaClientGenerator 
+    	targetPackage="com.ai.channel.mgmt.dao.mapper.interfaces" 
+    	targetProject="chan-srv-mgmt-core/src/main/java" 
+    	type="XMLMAPPER" />     
+    
+    <table schema="JZH" tableName="MGMT_CHL_PATROL_INFO" enableCountByExample="true"
+			enableUpdateByExample="true" enableDeleteByExample="true"
+			enableSelectByExample="true" selectByExampleQueryId="false" />
+		
+	
+  </context>
+</generatorConfiguration>

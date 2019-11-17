@@ -1,0 +1,1128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ai.channel.mgmt.dao.mapper.interfaces.WoOrdInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.ai.channel.mgmt.dao.mapper.bo.WoOrdInfo" >
+    <id column="WO_ID" property="woId" jdbcType="DECIMAL" />
+    <result column="PROC_INST_ID" property="procInstId" jdbcType="VARCHAR" />
+    <result column="SYSTEM_ID" property="systemId" jdbcType="VARCHAR" />
+    <result column="WO_TYPE" property="woType" jdbcType="VARCHAR" />
+    <result column="OPER_TYPE" property="operType" jdbcType="VARCHAR" />
+    <result column="STATE" property="state" jdbcType="VARCHAR" />
+    <result column="CHANNEL_ID" property="channelId" jdbcType="DECIMAL" />
+    <result column="APPLY_DATE" property="applyDate" jdbcType="TIMESTAMP" />
+    <result column="APPLY_OPER_ID" property="applyOperId" jdbcType="VARCHAR" />
+    <result column="OPER_LEVEL" property="operLevel" jdbcType="VARCHAR" />
+    <result column="UPDATE_DEPART_ID" property="updateDepartId" jdbcType="VARCHAR" />
+    <result column="UPDATE_OPER_ID" property="updateOperId" jdbcType="VARCHAR" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="FINISH_DATE" property="finishDate" jdbcType="TIMESTAMP" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="CHL_FIRST_KIND_ID" property="chlFirstKindId" jdbcType="VARCHAR" />
+    <result column="CHL_SECOND_KIND_ID" property="chlSecondKindId" jdbcType="VARCHAR" />
+    <result column="CHL_THIRD_KIND_ID" property="chlThirdKindId" jdbcType="VARCHAR" />
+    <result column="CHL_FORTH_KIND_ID" property="chlForthKindId" jdbcType="VARCHAR" />
+    <result column="CHL_KIND_ID" property="chlKindId" jdbcType="VARCHAR" />
+    <result column="CHL_KIND_NAME" property="chlKindName" jdbcType="VARCHAR" />
+    <result column="DEPT_ID1" property="deptId1" jdbcType="VARCHAR" />
+    <result column="DEPT_ID2" property="deptId2" jdbcType="VARCHAR" />
+    <result column="DEPT_ID3" property="deptId3" jdbcType="VARCHAR" />
+    <result column="DEPT_ID4" property="deptId4" jdbcType="VARCHAR" />
+    <result column="DEPT_ID5" property="deptId5" jdbcType="VARCHAR" />
+    <result column="DEPT_ID6" property="deptId6" jdbcType="VARCHAR" />
+    <result column="DEPT_ID" property="deptId" jdbcType="VARCHAR" />
+    <result column="DEPT_NAME" property="deptName" jdbcType="VARCHAR" />
+    <result column="ADM_REG_PROVINCE_CODE" property="admRegProvinceCode" jdbcType="VARCHAR" />
+    <result column="ADM_REG_CITY_CODE" property="admRegCityCode" jdbcType="VARCHAR" />
+    <result column="ADM_REG_COUNTY_CODE" property="admRegCountyCode" jdbcType="VARCHAR" />
+    <result column="ADM_REG_TOWN_CODE" property="admRegTownCode" jdbcType="VARCHAR" />
+    <result column="ADM_REG_VILLAGE_CODE" property="admRegVillageCode" jdbcType="VARCHAR" />
+    <result column="ADM_REG_CODE" property="admRegCode" jdbcType="VARCHAR" />
+    <result column="BUSI_REG_PROVINCE_CODE" property="busiRegProvinceCode" jdbcType="VARCHAR" />
+    <result column="BUSI_REG_CITY_CODE" property="busiRegCityCode" jdbcType="VARCHAR" />
+    <result column="BUSI_REG_COUNTY_CODE" property="busiRegCountyCode" jdbcType="VARCHAR" />
+    <result column="BUSI_REG_AREA_CODE" property="busiRegAreaCode" jdbcType="VARCHAR" />
+    <result column="BUSI_REG_GRID_CODE" property="busiRegGridCode" jdbcType="VARCHAR" />
+    <result column="BUSI_REG_MICRO_AREA_CODE" property="busiRegMicroAreaCode" jdbcType="VARCHAR" />
+    <result column="BUSI_REG_CODE" property="busiRegCode" jdbcType="VARCHAR" />
+    <result column="CHANNEL_CLASS" property="channelClass" jdbcType="VARCHAR" />
+    <result column="APPLY_REASON" property="applyReason" jdbcType="VARCHAR" />
+    <result column="ADM_REG_NAME" property="admRegName" jdbcType="VARCHAR" />
+    <result column="BUSI_REG_NAME" property="busiRegName" jdbcType="VARCHAR" />
+    <result column="SYNC_CRM_FLAG" property="syncCrmFlag" jdbcType="VARCHAR" />
+    <result column="WO_TITLE" property="woTitle" jdbcType="VARCHAR" />
+    <result column="WO_BIG_TYPE" property="woBigType" jdbcType="VARCHAR" />
+    <result column="BUSI_CODE" property="busiCode" jdbcType="VARCHAR" />
+    <result column="ASSIGNEE" property="assignee" jdbcType="VARCHAR" />
+    <result column="PRO_TERMINATION_DATE" property="proTerminationDate" jdbcType="TIMESTAMP" />
+    <result column="TERMINATION_FLAG" property="terminationFlag" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.ai.channel.mgmt.dao.mapper.bo.WoOrdInfo" extends="BaseResultMap" >
+    <result column="EXT_JSON" property="extJson" jdbcType="CLOB" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    WO_ID, PROC_INST_ID, SYSTEM_ID, WO_TYPE, OPER_TYPE, STATE, CHANNEL_ID, APPLY_DATE, 
+    APPLY_OPER_ID, OPER_LEVEL, UPDATE_DEPART_ID, UPDATE_OPER_ID, UPDATE_TIME, FINISH_DATE, 
+    REMARK, CHL_FIRST_KIND_ID, CHL_SECOND_KIND_ID, CHL_THIRD_KIND_ID, CHL_FORTH_KIND_ID, 
+    CHL_KIND_ID, CHL_KIND_NAME, DEPT_ID1, DEPT_ID2, DEPT_ID3, DEPT_ID4, DEPT_ID5, DEPT_ID6, 
+    DEPT_ID, DEPT_NAME, ADM_REG_PROVINCE_CODE, ADM_REG_CITY_CODE, ADM_REG_COUNTY_CODE, 
+    ADM_REG_TOWN_CODE, ADM_REG_VILLAGE_CODE, ADM_REG_CODE, BUSI_REG_PROVINCE_CODE, BUSI_REG_CITY_CODE, 
+    BUSI_REG_COUNTY_CODE, BUSI_REG_AREA_CODE, BUSI_REG_GRID_CODE, BUSI_REG_MICRO_AREA_CODE, 
+    BUSI_REG_CODE, CHANNEL_CLASS, APPLY_REASON, ADM_REG_NAME, BUSI_REG_NAME, SYNC_CRM_FLAG, 
+    WO_TITLE, WO_BIG_TYPE, BUSI_CODE, ASSIGNEE, PRO_TERMINATION_DATE, TERMINATION_FLAG
+  </sql>
+  <sql id="Blob_Column_List" >
+    EXT_JSON
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.ai.channel.mgmt.dao.mapper.bo.WoOrdInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from WO_ORD_INFO
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ai.channel.mgmt.dao.mapper.bo.WoOrdInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from WO_ORD_INFO
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from WO_ORD_INFO
+    where WO_ID = #{woId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from WO_ORD_INFO
+    where WO_ID = #{woId,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ai.channel.mgmt.dao.mapper.bo.WoOrdInfoExample" >
+    delete from WO_ORD_INFO
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ai.channel.mgmt.dao.mapper.bo.WoOrdInfo" >
+    insert into WO_ORD_INFO (WO_ID, PROC_INST_ID, SYSTEM_ID, 
+      WO_TYPE, OPER_TYPE, STATE, 
+      CHANNEL_ID, APPLY_DATE, APPLY_OPER_ID, 
+      OPER_LEVEL, UPDATE_DEPART_ID, UPDATE_OPER_ID, 
+      UPDATE_TIME, FINISH_DATE, REMARK, 
+      CHL_FIRST_KIND_ID, CHL_SECOND_KIND_ID, CHL_THIRD_KIND_ID, 
+      CHL_FORTH_KIND_ID, CHL_KIND_ID, CHL_KIND_NAME, 
+      DEPT_ID1, DEPT_ID2, DEPT_ID3, 
+      DEPT_ID4, DEPT_ID5, DEPT_ID6, 
+      DEPT_ID, DEPT_NAME, ADM_REG_PROVINCE_CODE, 
+      ADM_REG_CITY_CODE, ADM_REG_COUNTY_CODE, ADM_REG_TOWN_CODE, 
+      ADM_REG_VILLAGE_CODE, ADM_REG_CODE, BUSI_REG_PROVINCE_CODE, 
+      BUSI_REG_CITY_CODE, BUSI_REG_COUNTY_CODE, BUSI_REG_AREA_CODE, 
+      BUSI_REG_GRID_CODE, BUSI_REG_MICRO_AREA_CODE, 
+      BUSI_REG_CODE, CHANNEL_CLASS, APPLY_REASON, 
+      ADM_REG_NAME, BUSI_REG_NAME, SYNC_CRM_FLAG, 
+      WO_TITLE, WO_BIG_TYPE, BUSI_CODE, 
+      ASSIGNEE, PRO_TERMINATION_DATE, TERMINATION_FLAG, 
+      EXT_JSON)
+    values (#{woId,jdbcType=DECIMAL}, #{procInstId,jdbcType=VARCHAR}, #{systemId,jdbcType=VARCHAR}, 
+      #{woType,jdbcType=VARCHAR}, #{operType,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, 
+      #{channelId,jdbcType=DECIMAL}, #{applyDate,jdbcType=TIMESTAMP}, #{applyOperId,jdbcType=VARCHAR}, 
+      #{operLevel,jdbcType=VARCHAR}, #{updateDepartId,jdbcType=VARCHAR}, #{updateOperId,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{finishDate,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, 
+      #{chlFirstKindId,jdbcType=VARCHAR}, #{chlSecondKindId,jdbcType=VARCHAR}, #{chlThirdKindId,jdbcType=VARCHAR}, 
+      #{chlForthKindId,jdbcType=VARCHAR}, #{chlKindId,jdbcType=VARCHAR}, #{chlKindName,jdbcType=VARCHAR}, 
+      #{deptId1,jdbcType=VARCHAR}, #{deptId2,jdbcType=VARCHAR}, #{deptId3,jdbcType=VARCHAR}, 
+      #{deptId4,jdbcType=VARCHAR}, #{deptId5,jdbcType=VARCHAR}, #{deptId6,jdbcType=VARCHAR}, 
+      #{deptId,jdbcType=VARCHAR}, #{deptName,jdbcType=VARCHAR}, #{admRegProvinceCode,jdbcType=VARCHAR}, 
+      #{admRegCityCode,jdbcType=VARCHAR}, #{admRegCountyCode,jdbcType=VARCHAR}, #{admRegTownCode,jdbcType=VARCHAR}, 
+      #{admRegVillageCode,jdbcType=VARCHAR}, #{admRegCode,jdbcType=VARCHAR}, #{busiRegProvinceCode,jdbcType=VARCHAR}, 
+      #{busiRegCityCode,jdbcType=VARCHAR}, #{busiRegCountyCode,jdbcType=VARCHAR}, #{busiRegAreaCode,jdbcType=VARCHAR}, 
+      #{busiRegGridCode,jdbcType=VARCHAR}, #{busiRegMicroAreaCode,jdbcType=VARCHAR}, 
+      #{busiRegCode,jdbcType=VARCHAR}, #{channelClass,jdbcType=VARCHAR}, #{applyReason,jdbcType=VARCHAR}, 
+      #{admRegName,jdbcType=VARCHAR}, #{busiRegName,jdbcType=VARCHAR}, #{syncCrmFlag,jdbcType=VARCHAR}, 
+      #{woTitle,jdbcType=VARCHAR}, #{woBigType,jdbcType=VARCHAR}, #{busiCode,jdbcType=VARCHAR}, 
+      #{assignee,jdbcType=VARCHAR}, #{proTerminationDate,jdbcType=TIMESTAMP}, #{terminationFlag,jdbcType=VARCHAR}, 
+      #{extJson,jdbcType=CLOB})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ai.channel.mgmt.dao.mapper.bo.WoOrdInfo" >
+    insert into WO_ORD_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="woId != null" >
+        WO_ID,
+      </if>
+      <if test="procInstId != null" >
+        PROC_INST_ID,
+      </if>
+      <if test="systemId != null" >
+        SYSTEM_ID,
+      </if>
+      <if test="woType != null" >
+        WO_TYPE,
+      </if>
+      <if test="operType != null" >
+        OPER_TYPE,
+      </if>
+      <if test="state != null" >
+        STATE,
+      </if>
+      <if test="channelId != null" >
+        CHANNEL_ID,
+      </if>
+      <if test="applyDate != null" >
+        APPLY_DATE,
+      </if>
+      <if test="applyOperId != null" >
+        APPLY_OPER_ID,
+      </if>
+      <if test="operLevel != null" >
+        OPER_LEVEL,
+      </if>
+      <if test="updateDepartId != null" >
+        UPDATE_DEPART_ID,
+      </if>
+      <if test="updateOperId != null" >
+        UPDATE_OPER_ID,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="finishDate != null" >
+        FINISH_DATE,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="chlFirstKindId != null" >
+        CHL_FIRST_KIND_ID,
+      </if>
+      <if test="chlSecondKindId != null" >
+        CHL_SECOND_KIND_ID,
+      </if>
+      <if test="chlThirdKindId != null" >
+        CHL_THIRD_KIND_ID,
+      </if>
+      <if test="chlForthKindId != null" >
+        CHL_FORTH_KIND_ID,
+      </if>
+      <if test="chlKindId != null" >
+        CHL_KIND_ID,
+      </if>
+      <if test="chlKindName != null" >
+        CHL_KIND_NAME,
+      </if>
+      <if test="deptId1 != null" >
+        DEPT_ID1,
+      </if>
+      <if test="deptId2 != null" >
+        DEPT_ID2,
+      </if>
+      <if test="deptId3 != null" >
+        DEPT_ID3,
+      </if>
+      <if test="deptId4 != null" >
+        DEPT_ID4,
+      </if>
+      <if test="deptId5 != null" >
+        DEPT_ID5,
+      </if>
+      <if test="deptId6 != null" >
+        DEPT_ID6,
+      </if>
+      <if test="deptId != null" >
+        DEPT_ID,
+      </if>
+      <if test="deptName != null" >
+        DEPT_NAME,
+      </if>
+      <if test="admRegProvinceCode != null" >
+        ADM_REG_PROVINCE_CODE,
+      </if>
+      <if test="admRegCityCode != null" >
+        ADM_REG_CITY_CODE,
+      </if>
+      <if test="admRegCountyCode != null" >
+        ADM_REG_COUNTY_CODE,
+      </if>
+      <if test="admRegTownCode != null" >
+        ADM_REG_TOWN_CODE,
+      </if>
+      <if test="admRegVillageCode != null" >
+        ADM_REG_VILLAGE_CODE,
+      </if>
+      <if test="admRegCode != null" >
+        ADM_REG_CODE,
+      </if>
+      <if test="busiRegProvinceCode != null" >
+        BUSI_REG_PROVINCE_CODE,
+      </if>
+      <if test="busiRegCityCode != null" >
+        BUSI_REG_CITY_CODE,
+      </if>
+      <if test="busiRegCountyCode != null" >
+        BUSI_REG_COUNTY_CODE,
+      </if>
+      <if test="busiRegAreaCode != null" >
+        BUSI_REG_AREA_CODE,
+      </if>
+      <if test="busiRegGridCode != null" >
+        BUSI_REG_GRID_CODE,
+      </if>
+      <if test="busiRegMicroAreaCode != null" >
+        BUSI_REG_MICRO_AREA_CODE,
+      </if>
+      <if test="busiRegCode != null" >
+        BUSI_REG_CODE,
+      </if>
+      <if test="channelClass != null" >
+        CHANNEL_CLASS,
+      </if>
+      <if test="applyReason != null" >
+        APPLY_REASON,
+      </if>
+      <if test="admRegName != null" >
+        ADM_REG_NAME,
+      </if>
+      <if test="busiRegName != null" >
+        BUSI_REG_NAME,
+      </if>
+      <if test="syncCrmFlag != null" >
+        SYNC_CRM_FLAG,
+      </if>
+      <if test="woTitle != null" >
+        WO_TITLE,
+      </if>
+      <if test="woBigType != null" >
+        WO_BIG_TYPE,
+      </if>
+      <if test="busiCode != null" >
+        BUSI_CODE,
+      </if>
+      <if test="assignee != null" >
+        ASSIGNEE,
+      </if>
+      <if test="proTerminationDate != null" >
+        PRO_TERMINATION_DATE,
+      </if>
+      <if test="terminationFlag != null" >
+        TERMINATION_FLAG,
+      </if>
+      <if test="extJson != null" >
+        EXT_JSON,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="woId != null" >
+        #{woId,jdbcType=DECIMAL},
+      </if>
+      <if test="procInstId != null" >
+        #{procInstId,jdbcType=VARCHAR},
+      </if>
+      <if test="systemId != null" >
+        #{systemId,jdbcType=VARCHAR},
+      </if>
+      <if test="woType != null" >
+        #{woType,jdbcType=VARCHAR},
+      </if>
+      <if test="operType != null" >
+        #{operType,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="channelId != null" >
+        #{channelId,jdbcType=DECIMAL},
+      </if>
+      <if test="applyDate != null" >
+        #{applyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applyOperId != null" >
+        #{applyOperId,jdbcType=VARCHAR},
+      </if>
+      <if test="operLevel != null" >
+        #{operLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDepartId != null" >
+        #{updateDepartId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateOperId != null" >
+        #{updateOperId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="finishDate != null" >
+        #{finishDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="chlFirstKindId != null" >
+        #{chlFirstKindId,jdbcType=VARCHAR},
+      </if>
+      <if test="chlSecondKindId != null" >
+        #{chlSecondKindId,jdbcType=VARCHAR},
+      </if>
+      <if test="chlThirdKindId != null" >
+        #{chlThirdKindId,jdbcType=VARCHAR},
+      </if>
+      <if test="chlForthKindId != null" >
+        #{chlForthKindId,jdbcType=VARCHAR},
+      </if>
+      <if test="chlKindId != null" >
+        #{chlKindId,jdbcType=VARCHAR},
+      </if>
+      <if test="chlKindName != null" >
+        #{chlKindName,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId1 != null" >
+        #{deptId1,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId2 != null" >
+        #{deptId2,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId3 != null" >
+        #{deptId3,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId4 != null" >
+        #{deptId4,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId5 != null" >
+        #{deptId5,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId6 != null" >
+        #{deptId6,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId != null" >
+        #{deptId,jdbcType=VARCHAR},
+      </if>
+      <if test="deptName != null" >
+        #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="admRegProvinceCode != null" >
+        #{admRegProvinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="admRegCityCode != null" >
+        #{admRegCityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="admRegCountyCode != null" >
+        #{admRegCountyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="admRegTownCode != null" >
+        #{admRegTownCode,jdbcType=VARCHAR},
+      </if>
+      <if test="admRegVillageCode != null" >
+        #{admRegVillageCode,jdbcType=VARCHAR},
+      </if>
+      <if test="admRegCode != null" >
+        #{admRegCode,jdbcType=VARCHAR},
+      </if>
+      <if test="busiRegProvinceCode != null" >
+        #{busiRegProvinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="busiRegCityCode != null" >
+        #{busiRegCityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="busiRegCountyCode != null" >
+        #{busiRegCountyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="busiRegAreaCode != null" >
+        #{busiRegAreaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="busiRegGridCode != null" >
+        #{busiRegGridCode,jdbcType=VARCHAR},
+      </if>
+      <if test="busiRegMicroAreaCode != null" >
+        #{busiRegMicroAreaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="busiRegCode != null" >
+        #{busiRegCode,jdbcType=VARCHAR},
+      </if>
+      <if test="channelClass != null" >
+        #{channelClass,jdbcType=VARCHAR},
+      </if>
+      <if test="applyReason != null" >
+        #{applyReason,jdbcType=VARCHAR},
+      </if>
+      <if test="admRegName != null" >
+        #{admRegName,jdbcType=VARCHAR},
+      </if>
+      <if test="busiRegName != null" >
+        #{busiRegName,jdbcType=VARCHAR},
+      </if>
+      <if test="syncCrmFlag != null" >
+        #{syncCrmFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="woTitle != null" >
+        #{woTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="woBigType != null" >
+        #{woBigType,jdbcType=VARCHAR},
+      </if>
+      <if test="busiCode != null" >
+        #{busiCode,jdbcType=VARCHAR},
+      </if>
+      <if test="assignee != null" >
+        #{assignee,jdbcType=VARCHAR},
+      </if>
+      <if test="proTerminationDate != null" >
+        #{proTerminationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="terminationFlag != null" >
+        #{terminationFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="extJson != null" >
+        #{extJson,jdbcType=CLOB},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ai.channel.mgmt.dao.mapper.bo.WoOrdInfoExample" resultType="java.lang.Integer" >
+    select count(*) from WO_ORD_INFO
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update WO_ORD_INFO
+    <set >
+      <if test="record.woId != null" >
+        WO_ID = #{record.woId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.procInstId != null" >
+        PROC_INST_ID = #{record.procInstId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.systemId != null" >
+        SYSTEM_ID = #{record.systemId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.woType != null" >
+        WO_TYPE = #{record.woType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operType != null" >
+        OPER_TYPE = #{record.operType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null" >
+        STATE = #{record.state,jdbcType=VARCHAR},
+      </if>
+      <if test="record.channelId != null" >
+        CHANNEL_ID = #{record.channelId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.applyDate != null" >
+        APPLY_DATE = #{record.applyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.applyOperId != null" >
+        APPLY_OPER_ID = #{record.applyOperId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operLevel != null" >
+        OPER_LEVEL = #{record.operLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateDepartId != null" >
+        UPDATE_DEPART_ID = #{record.updateDepartId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateOperId != null" >
+        UPDATE_OPER_ID = #{record.updateOperId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.finishDate != null" >
+        FINISH_DATE = #{record.finishDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.remark != null" >
+        REMARK = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chlFirstKindId != null" >
+        CHL_FIRST_KIND_ID = #{record.chlFirstKindId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chlSecondKindId != null" >
+        CHL_SECOND_KIND_ID = #{record.chlSecondKindId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chlThirdKindId != null" >
+        CHL_THIRD_KIND_ID = #{record.chlThirdKindId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chlForthKindId != null" >
+        CHL_FORTH_KIND_ID = #{record.chlForthKindId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chlKindId != null" >
+        CHL_KIND_ID = #{record.chlKindId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chlKindName != null" >
+        CHL_KIND_NAME = #{record.chlKindName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptId1 != null" >
+        DEPT_ID1 = #{record.deptId1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptId2 != null" >
+        DEPT_ID2 = #{record.deptId2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptId3 != null" >
+        DEPT_ID3 = #{record.deptId3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptId4 != null" >
+        DEPT_ID4 = #{record.deptId4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptId5 != null" >
+        DEPT_ID5 = #{record.deptId5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptId6 != null" >
+        DEPT_ID6 = #{record.deptId6,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptId != null" >
+        DEPT_ID = #{record.deptId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptName != null" >
+        DEPT_NAME = #{record.deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.admRegProvinceCode != null" >
+        ADM_REG_PROVINCE_CODE = #{record.admRegProvinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.admRegCityCode != null" >
+        ADM_REG_CITY_CODE = #{record.admRegCityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.admRegCountyCode != null" >
+        ADM_REG_COUNTY_CODE = #{record.admRegCountyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.admRegTownCode != null" >
+        ADM_REG_TOWN_CODE = #{record.admRegTownCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.admRegVillageCode != null" >
+        ADM_REG_VILLAGE_CODE = #{record.admRegVillageCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.admRegCode != null" >
+        ADM_REG_CODE = #{record.admRegCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.busiRegProvinceCode != null" >
+        BUSI_REG_PROVINCE_CODE = #{record.busiRegProvinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.busiRegCityCode != null" >
+        BUSI_REG_CITY_CODE = #{record.busiRegCityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.busiRegCountyCode != null" >
+        BUSI_REG_COUNTY_CODE = #{record.busiRegCountyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.busiRegAreaCode != null" >
+        BUSI_REG_AREA_CODE = #{record.busiRegAreaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.busiRegGridCode != null" >
+        BUSI_REG_GRID_CODE = #{record.busiRegGridCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.busiRegMicroAreaCode != null" >
+        BUSI_REG_MICRO_AREA_CODE = #{record.busiRegMicroAreaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.busiRegCode != null" >
+        BUSI_REG_CODE = #{record.busiRegCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.channelClass != null" >
+        CHANNEL_CLASS = #{record.channelClass,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applyReason != null" >
+        APPLY_REASON = #{record.applyReason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.admRegName != null" >
+        ADM_REG_NAME = #{record.admRegName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.busiRegName != null" >
+        BUSI_REG_NAME = #{record.busiRegName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.syncCrmFlag != null" >
+        SYNC_CRM_FLAG = #{record.syncCrmFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.woTitle != null" >
+        WO_TITLE = #{record.woTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.woBigType != null" >
+        WO_BIG_TYPE = #{record.woBigType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.busiCode != null" >
+        BUSI_CODE = #{record.busiCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.assignee != null" >
+        ASSIGNEE = #{record.assignee,jdbcType=VARCHAR},
+      </if>
+      <if test="record.proTerminationDate != null" >
+        PRO_TERMINATION_DATE = #{record.proTerminationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.terminationFlag != null" >
+        TERMINATION_FLAG = #{record.terminationFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extJson != null" >
+        EXT_JSON = #{record.extJson,jdbcType=CLOB},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update WO_ORD_INFO
+    set WO_ID = #{record.woId,jdbcType=DECIMAL},
+      PROC_INST_ID = #{record.procInstId,jdbcType=VARCHAR},
+      SYSTEM_ID = #{record.systemId,jdbcType=VARCHAR},
+      WO_TYPE = #{record.woType,jdbcType=VARCHAR},
+      OPER_TYPE = #{record.operType,jdbcType=VARCHAR},
+      STATE = #{record.state,jdbcType=VARCHAR},
+      CHANNEL_ID = #{record.channelId,jdbcType=DECIMAL},
+      APPLY_DATE = #{record.applyDate,jdbcType=TIMESTAMP},
+      APPLY_OPER_ID = #{record.applyOperId,jdbcType=VARCHAR},
+      OPER_LEVEL = #{record.operLevel,jdbcType=VARCHAR},
+      UPDATE_DEPART_ID = #{record.updateDepartId,jdbcType=VARCHAR},
+      UPDATE_OPER_ID = #{record.updateOperId,jdbcType=VARCHAR},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      FINISH_DATE = #{record.finishDate,jdbcType=TIMESTAMP},
+      REMARK = #{record.remark,jdbcType=VARCHAR},
+      CHL_FIRST_KIND_ID = #{record.chlFirstKindId,jdbcType=VARCHAR},
+      CHL_SECOND_KIND_ID = #{record.chlSecondKindId,jdbcType=VARCHAR},
+      CHL_THIRD_KIND_ID = #{record.chlThirdKindId,jdbcType=VARCHAR},
+      CHL_FORTH_KIND_ID = #{record.chlForthKindId,jdbcType=VARCHAR},
+      CHL_KIND_ID = #{record.chlKindId,jdbcType=VARCHAR},
+      CHL_KIND_NAME = #{record.chlKindName,jdbcType=VARCHAR},
+      DEPT_ID1 = #{record.deptId1,jdbcType=VARCHAR},
+      DEPT_ID2 = #{record.deptId2,jdbcType=VARCHAR},
+      DEPT_ID3 = #{record.deptId3,jdbcType=VARCHAR},
+      DEPT_ID4 = #{record.deptId4,jdbcType=VARCHAR},
+      DEPT_ID5 = #{record.deptId5,jdbcType=VARCHAR},
+      DEPT_ID6 = #{record.deptId6,jdbcType=VARCHAR},
+      DEPT_ID = #{record.deptId,jdbcType=VARCHAR},
+      DEPT_NAME = #{record.deptName,jdbcType=VARCHAR},
+      ADM_REG_PROVINCE_CODE = #{record.admRegProvinceCode,jdbcType=VARCHAR},
+      ADM_REG_CITY_CODE = #{record.admRegCityCode,jdbcType=VARCHAR},
+      ADM_REG_COUNTY_CODE = #{record.admRegCountyCode,jdbcType=VARCHAR},
+      ADM_REG_TOWN_CODE = #{record.admRegTownCode,jdbcType=VARCHAR},
+      ADM_REG_VILLAGE_CODE = #{record.admRegVillageCode,jdbcType=VARCHAR},
+      ADM_REG_CODE = #{record.admRegCode,jdbcType=VARCHAR},
+      BUSI_REG_PROVINCE_CODE = #{record.busiRegProvinceCode,jdbcType=VARCHAR},
+      BUSI_REG_CITY_CODE = #{record.busiRegCityCode,jdbcType=VARCHAR},
+      BUSI_REG_COUNTY_CODE = #{record.busiRegCountyCode,jdbcType=VARCHAR},
+      BUSI_REG_AREA_CODE = #{record.busiRegAreaCode,jdbcType=VARCHAR},
+      BUSI_REG_GRID_CODE = #{record.busiRegGridCode,jdbcType=VARCHAR},
+      BUSI_REG_MICRO_AREA_CODE = #{record.busiRegMicroAreaCode,jdbcType=VARCHAR},
+      BUSI_REG_CODE = #{record.busiRegCode,jdbcType=VARCHAR},
+      CHANNEL_CLASS = #{record.channelClass,jdbcType=VARCHAR},
+      APPLY_REASON = #{record.applyReason,jdbcType=VARCHAR},
+      ADM_REG_NAME = #{record.admRegName,jdbcType=VARCHAR},
+      BUSI_REG_NAME = #{record.busiRegName,jdbcType=VARCHAR},
+      SYNC_CRM_FLAG = #{record.syncCrmFlag,jdbcType=VARCHAR},
+      WO_TITLE = #{record.woTitle,jdbcType=VARCHAR},
+      WO_BIG_TYPE = #{record.woBigType,jdbcType=VARCHAR},
+      BUSI_CODE = #{record.busiCode,jdbcType=VARCHAR},
+      ASSIGNEE = #{record.assignee,jdbcType=VARCHAR},
+      PRO_TERMINATION_DATE = #{record.proTerminationDate,jdbcType=TIMESTAMP},
+      TERMINATION_FLAG = #{record.terminationFlag,jdbcType=VARCHAR},
+      EXT_JSON = #{record.extJson,jdbcType=CLOB}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update WO_ORD_INFO
+    set WO_ID = #{record.woId,jdbcType=DECIMAL},
+      PROC_INST_ID = #{record.procInstId,jdbcType=VARCHAR},
+      SYSTEM_ID = #{record.systemId,jdbcType=VARCHAR},
+      WO_TYPE = #{record.woType,jdbcType=VARCHAR},
+      OPER_TYPE = #{record.operType,jdbcType=VARCHAR},
+      STATE = #{record.state,jdbcType=VARCHAR},
+      CHANNEL_ID = #{record.channelId,jdbcType=DECIMAL},
+      APPLY_DATE = #{record.applyDate,jdbcType=TIMESTAMP},
+      APPLY_OPER_ID = #{record.applyOperId,jdbcType=VARCHAR},
+      OPER_LEVEL = #{record.operLevel,jdbcType=VARCHAR},
+      UPDATE_DEPART_ID = #{record.updateDepartId,jdbcType=VARCHAR},
+      UPDATE_OPER_ID = #{record.updateOperId,jdbcType=VARCHAR},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      FINISH_DATE = #{record.finishDate,jdbcType=TIMESTAMP},
+      REMARK = #{record.remark,jdbcType=VARCHAR},
+      CHL_FIRST_KIND_ID = #{record.chlFirstKindId,jdbcType=VARCHAR},
+      CHL_SECOND_KIND_ID = #{record.chlSecondKindId,jdbcType=VARCHAR},
+      CHL_THIRD_KIND_ID = #{record.chlThirdKindId,jdbcType=VARCHAR},
+      CHL_FORTH_KIND_ID = #{record.chlForthKindId,jdbcType=VARCHAR},
+      CHL_KIND_ID = #{record.chlKindId,jdbcType=VARCHAR},
+      CHL_KIND_NAME = #{record.chlKindName,jdbcType=VARCHAR},
+      DEPT_ID1 = #{record.deptId1,jdbcType=VARCHAR},
+      DEPT_ID2 = #{record.deptId2,jdbcType=VARCHAR},
+      DEPT_ID3 = #{record.deptId3,jdbcType=VARCHAR},
+      DEPT_ID4 = #{record.deptId4,jdbcType=VARCHAR},
+      DEPT_ID5 = #{record.deptId5,jdbcType=VARCHAR},
+      DEPT_ID6 = #{record.deptId6,jdbcType=VARCHAR},
+      DEPT_ID = #{record.deptId,jdbcType=VARCHAR},
+      DEPT_NAME = #{record.deptName,jdbcType=VARCHAR},
+      ADM_REG_PROVINCE_CODE = #{record.admRegProvinceCode,jdbcType=VARCHAR},
+      ADM_REG_CITY_CODE = #{record.admRegCityCode,jdbcType=VARCHAR},
+      ADM_REG_COUNTY_CODE = #{record.admRegCountyCode,jdbcType=VARCHAR},
+      ADM_REG_TOWN_CODE = #{record.admRegTownCode,jdbcType=VARCHAR},
+      ADM_REG_VILLAGE_CODE = #{record.admRegVillageCode,jdbcType=VARCHAR},
+      ADM_REG_CODE = #{record.admRegCode,jdbcType=VARCHAR},
+      BUSI_REG_PROVINCE_CODE = #{record.busiRegProvinceCode,jdbcType=VARCHAR},
+      BUSI_REG_CITY_CODE = #{record.busiRegCityCode,jdbcType=VARCHAR},
+      BUSI_REG_COUNTY_CODE = #{record.busiRegCountyCode,jdbcType=VARCHAR},
+      BUSI_REG_AREA_CODE = #{record.busiRegAreaCode,jdbcType=VARCHAR},
+      BUSI_REG_GRID_CODE = #{record.busiRegGridCode,jdbcType=VARCHAR},
+      BUSI_REG_MICRO_AREA_CODE = #{record.busiRegMicroAreaCode,jdbcType=VARCHAR},
+      BUSI_REG_CODE = #{record.busiRegCode,jdbcType=VARCHAR},
+      CHANNEL_CLASS = #{record.channelClass,jdbcType=VARCHAR},
+      APPLY_REASON = #{record.applyReason,jdbcType=VARCHAR},
+      ADM_REG_NAME = #{record.admRegName,jdbcType=VARCHAR},
+      BUSI_REG_NAME = #{record.busiRegName,jdbcType=VARCHAR},
+      SYNC_CRM_FLAG = #{record.syncCrmFlag,jdbcType=VARCHAR},
+      WO_TITLE = #{record.woTitle,jdbcType=VARCHAR},
+      WO_BIG_TYPE = #{record.woBigType,jdbcType=VARCHAR},
+      BUSI_CODE = #{record.busiCode,jdbcType=VARCHAR},
+      ASSIGNEE = #{record.assignee,jdbcType=VARCHAR},
+      PRO_TERMINATION_DATE = #{record.proTerminationDate,jdbcType=TIMESTAMP},
+      TERMINATION_FLAG = #{record.terminationFlag,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ai.channel.mgmt.dao.mapper.bo.WoOrdInfo" >
+    update WO_ORD_INFO
+    <set >
+      <if test="procInstId != null" >
+        PROC_INST_ID = #{procInstId,jdbcType=VARCHAR},
+      </if>
+      <if test="systemId != null" >
+        SYSTEM_ID = #{systemId,jdbcType=VARCHAR},
+      </if>
+      <if test="woType != null" >
+        WO_TYPE = #{woType,jdbcType=VARCHAR},
+      </if>
+      <if test="operType != null" >
+        OPER_TYPE = #{operType,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        STATE = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="channelId != null" >
+        CHANNEL_ID = #{channelId,jdbcType=DECIMAL},
+      </if>
+      <if test="applyDate != null" >
+        APPLY_DATE = #{applyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applyOperId != null" >
+        APPLY_OPER_ID = #{applyOperId,jdbcType=VARCHAR},
+      </if>
+      <if test="operLevel != null" >
+        OPER_LEVEL = #{operLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDepartId != null" >
+        UPDATE_DEPART_ID = #{updateDepartId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateOperId != null" >
+        UPDATE_OPER_ID = #{updateOperId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="finishDate != null" >
+        FINISH_DATE = #{finishDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="chlFirstKindId != null" >
+        CHL_FIRST_KIND_ID = #{chlFirstKindId,jdbcType=VARCHAR},
+      </if>
+      <if test="chlSecondKindId != null" >
+        CHL_SECOND_KIND_ID = #{chlSecondKindId,jdbcType=VARCHAR},
+      </if>
+      <if test="chlThirdKindId != null" >
+        CHL_THIRD_KIND_ID = #{chlThirdKindId,jdbcType=VARCHAR},
+      </if>
+      <if test="chlForthKindId != null" >
+        CHL_FORTH_KIND_ID = #{chlForthKindId,jdbcType=VARCHAR},
+      </if>
+      <if test="chlKindId != null" >
+        CHL_KIND_ID = #{chlKindId,jdbcType=VARCHAR},
+      </if>
+      <if test="chlKindName != null" >
+        CHL_KIND_NAME = #{chlKindName,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId1 != null" >
+        DEPT_ID1 = #{deptId1,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId2 != null" >
+        DEPT_ID2 = #{deptId2,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId3 != null" >
+        DEPT_ID3 = #{deptId3,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId4 != null" >
+        DEPT_ID4 = #{deptId4,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId5 != null" >
+        DEPT_ID5 = #{deptId5,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId6 != null" >
+        DEPT_ID6 = #{deptId6,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId != null" >
+        DEPT_ID = #{deptId,jdbcType=VARCHAR},
+      </if>
+      <if test="deptName != null" >
+        DEPT_NAME = #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="admRegProvinceCode != null" >
+        ADM_REG_PROVINCE_CODE = #{admRegProvinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="admRegCityCode != null" >
+        ADM_REG_CITY_CODE = #{admRegCityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="admRegCountyCode != null" >
+        ADM_REG_COUNTY_CODE = #{admRegCountyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="admRegTownCode != null" >
+        ADM_REG_TOWN_CODE = #{admRegTownCode,jdbcType=VARCHAR},
+      </if>
+      <if test="admRegVillageCode != null" >
+        ADM_REG_VILLAGE_CODE = #{admRegVillageCode,jdbcType=VARCHAR},
+      </if>
+      <if test="admRegCode != null" >
+        ADM_REG_CODE = #{admRegCode,jdbcType=VARCHAR},
+      </if>
+      <if test="busiRegProvinceCode != null" >
+        BUSI_REG_PROVINCE_CODE = #{busiRegProvinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="busiRegCityCode != null" >
+        BUSI_REG_CITY_CODE = #{busiRegCityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="busiRegCountyCode != null" >
+        BUSI_REG_COUNTY_CODE = #{busiRegCountyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="busiRegAreaCode != null" >
+        BUSI_REG_AREA_CODE = #{busiRegAreaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="busiRegGridCode != null" >
+        BUSI_REG_GRID_CODE = #{busiRegGridCode,jdbcType=VARCHAR},
+      </if>
+      <if test="busiRegMicroAreaCode != null" >
+        BUSI_REG_MICRO_AREA_CODE = #{busiRegMicroAreaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="busiRegCode != null" >
+        BUSI_REG_CODE = #{busiRegCode,jdbcType=VARCHAR},
+      </if>
+      <if test="channelClass != null" >
+        CHANNEL_CLASS = #{channelClass,jdbcType=VARCHAR},
+      </if>
+      <if test="applyReason != null" >
+        APPLY_REASON = #{applyReason,jdbcType=VARCHAR},
+      </if>
+      <if test="admRegName != null" >
+        ADM_REG_NAME = #{admRegName,jdbcType=VARCHAR},
+      </if>
+      <if test="busiRegName != null" >
+        BUSI_REG_NAME = #{busiRegName,jdbcType=VARCHAR},
+      </if>
+      <if test="syncCrmFlag != null" >
+        SYNC_CRM_FLAG = #{syncCrmFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="woTitle != null" >
+        WO_TITLE = #{woTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="woBigType != null" >
+        WO_BIG_TYPE = #{woBigType,jdbcType=VARCHAR},
+      </if>
+      <if test="busiCode != null" >
+        BUSI_CODE = #{busiCode,jdbcType=VARCHAR},
+      </if>
+      <if test="assignee != null" >
+        ASSIGNEE = #{assignee,jdbcType=VARCHAR},
+      </if>
+      <if test="proTerminationDate != null" >
+        PRO_TERMINATION_DATE = #{proTerminationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="terminationFlag != null" >
+        TERMINATION_FLAG = #{terminationFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="extJson != null" >
+        EXT_JSON = #{extJson,jdbcType=CLOB},
+      </if>
+    </set>
+    where WO_ID = #{woId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ai.channel.mgmt.dao.mapper.bo.WoOrdInfo" >
+    update WO_ORD_INFO
+    set PROC_INST_ID = #{procInstId,jdbcType=VARCHAR},
+      SYSTEM_ID = #{systemId,jdbcType=VARCHAR},
+      WO_TYPE = #{woType,jdbcType=VARCHAR},
+      OPER_TYPE = #{operType,jdbcType=VARCHAR},
+      STATE = #{state,jdbcType=VARCHAR},
+      CHANNEL_ID = #{channelId,jdbcType=DECIMAL},
+      APPLY_DATE = #{applyDate,jdbcType=TIMESTAMP},
+      APPLY_OPER_ID = #{applyOperId,jdbcType=VARCHAR},
+      OPER_LEVEL = #{operLevel,jdbcType=VARCHAR},
+      UPDATE_DEPART_ID = #{updateDepartId,jdbcType=VARCHAR},
+      UPDATE_OPER_ID = #{updateOperId,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      FINISH_DATE = #{finishDate,jdbcType=TIMESTAMP},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      CHL_FIRST_KIND_ID = #{chlFirstKindId,jdbcType=VARCHAR},
+      CHL_SECOND_KIND_ID = #{chlSecondKindId,jdbcType=VARCHAR},
+      CHL_THIRD_KIND_ID = #{chlThirdKindId,jdbcType=VARCHAR},
+      CHL_FORTH_KIND_ID = #{chlForthKindId,jdbcType=VARCHAR},
+      CHL_KIND_ID = #{chlKindId,jdbcType=VARCHAR},
+      CHL_KIND_NAME = #{chlKindName,jdbcType=VARCHAR},
+      DEPT_ID1 = #{deptId1,jdbcType=VARCHAR},
+      DEPT_ID2 = #{deptId2,jdbcType=VARCHAR},
+      DEPT_ID3 = #{deptId3,jdbcType=VARCHAR},
+      DEPT_ID4 = #{deptId4,jdbcType=VARCHAR},
+      DEPT_ID5 = #{deptId5,jdbcType=VARCHAR},
+      DEPT_ID6 = #{deptId6,jdbcType=VARCHAR},
+      DEPT_ID = #{deptId,jdbcType=VARCHAR},
+      DEPT_NAME = #{deptName,jdbcType=VARCHAR},
+      ADM_REG_PROVINCE_CODE = #{admRegProvinceCode,jdbcType=VARCHAR},
+      ADM_REG_CITY_CODE = #{admRegCityCode,jdbcType=VARCHAR},
+      ADM_REG_COUNTY_CODE = #{admRegCountyCode,jdbcType=VARCHAR},
+      ADM_REG_TOWN_CODE = #{admRegTownCode,jdbcType=VARCHAR},
+      ADM_REG_VILLAGE_CODE = #{admRegVillageCode,jdbcType=VARCHAR},
+      ADM_REG_CODE = #{admRegCode,jdbcType=VARCHAR},
+      BUSI_REG_PROVINCE_CODE = #{busiRegProvinceCode,jdbcType=VARCHAR},
+      BUSI_REG_CITY_CODE = #{busiRegCityCode,jdbcType=VARCHAR},
+      BUSI_REG_COUNTY_CODE = #{busiRegCountyCode,jdbcType=VARCHAR},
+      BUSI_REG_AREA_CODE = #{busiRegAreaCode,jdbcType=VARCHAR},
+      BUSI_REG_GRID_CODE = #{busiRegGridCode,jdbcType=VARCHAR},
+      BUSI_REG_MICRO_AREA_CODE = #{busiRegMicroAreaCode,jdbcType=VARCHAR},
+      BUSI_REG_CODE = #{busiRegCode,jdbcType=VARCHAR},
+      CHANNEL_CLASS = #{channelClass,jdbcType=VARCHAR},
+      APPLY_REASON = #{applyReason,jdbcType=VARCHAR},
+      ADM_REG_NAME = #{admRegName,jdbcType=VARCHAR},
+      BUSI_REG_NAME = #{busiRegName,jdbcType=VARCHAR},
+      SYNC_CRM_FLAG = #{syncCrmFlag,jdbcType=VARCHAR},
+      WO_TITLE = #{woTitle,jdbcType=VARCHAR},
+      WO_BIG_TYPE = #{woBigType,jdbcType=VARCHAR},
+      BUSI_CODE = #{busiCode,jdbcType=VARCHAR},
+      ASSIGNEE = #{assignee,jdbcType=VARCHAR},
+      PRO_TERMINATION_DATE = #{proTerminationDate,jdbcType=TIMESTAMP},
+      TERMINATION_FLAG = #{terminationFlag,jdbcType=VARCHAR},
+      EXT_JSON = #{extJson,jdbcType=CLOB}
+    where WO_ID = #{woId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ai.channel.mgmt.dao.mapper.bo.WoOrdInfo" >
+    update WO_ORD_INFO
+    set PROC_INST_ID = #{procInstId,jdbcType=VARCHAR},
+      SYSTEM_ID = #{systemId,jdbcType=VARCHAR},
+      WO_TYPE = #{woType,jdbcType=VARCHAR},
+      OPER_TYPE = #{operType,jdbcType=VARCHAR},
+      STATE = #{state,jdbcType=VARCHAR},
+      CHANNEL_ID = #{channelId,jdbcType=DECIMAL},
+      APPLY_DATE = #{applyDate,jdbcType=TIMESTAMP},
+      APPLY_OPER_ID = #{applyOperId,jdbcType=VARCHAR},
+      OPER_LEVEL = #{operLevel,jdbcType=VARCHAR},
+      UPDATE_DEPART_ID = #{updateDepartId,jdbcType=VARCHAR},
+      UPDATE_OPER_ID = #{updateOperId,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      FINISH_DATE = #{finishDate,jdbcType=TIMESTAMP},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      CHL_FIRST_KIND_ID = #{chlFirstKindId,jdbcType=VARCHAR},
+      CHL_SECOND_KIND_ID = #{chlSecondKindId,jdbcType=VARCHAR},
+      CHL_THIRD_KIND_ID = #{chlThirdKindId,jdbcType=VARCHAR},
+      CHL_FORTH_KIND_ID = #{chlForthKindId,jdbcType=VARCHAR},
+      CHL_KIND_ID = #{chlKindId,jdbcType=VARCHAR},
+      CHL_KIND_NAME = #{chlKindName,jdbcType=VARCHAR},
+      DEPT_ID1 = #{deptId1,jdbcType=VARCHAR},
+      DEPT_ID2 = #{deptId2,jdbcType=VARCHAR},
+      DEPT_ID3 = #{deptId3,jdbcType=VARCHAR},
+      DEPT_ID4 = #{deptId4,jdbcType=VARCHAR},
+      DEPT_ID5 = #{deptId5,jdbcType=VARCHAR},
+      DEPT_ID6 = #{deptId6,jdbcType=VARCHAR},
+      DEPT_ID = #{deptId,jdbcType=VARCHAR},
+      DEPT_NAME = #{deptName,jdbcType=VARCHAR},
+      ADM_REG_PROVINCE_CODE = #{admRegProvinceCode,jdbcType=VARCHAR},
+      ADM_REG_CITY_CODE = #{admRegCityCode,jdbcType=VARCHAR},
+      ADM_REG_COUNTY_CODE = #{admRegCountyCode,jdbcType=VARCHAR},
+      ADM_REG_TOWN_CODE = #{admRegTownCode,jdbcType=VARCHAR},
+      ADM_REG_VILLAGE_CODE = #{admRegVillageCode,jdbcType=VARCHAR},
+      ADM_REG_CODE = #{admRegCode,jdbcType=VARCHAR},
+      BUSI_REG_PROVINCE_CODE = #{busiRegProvinceCode,jdbcType=VARCHAR},
+      BUSI_REG_CITY_CODE = #{busiRegCityCode,jdbcType=VARCHAR},
+      BUSI_REG_COUNTY_CODE = #{busiRegCountyCode,jdbcType=VARCHAR},
+      BUSI_REG_AREA_CODE = #{busiRegAreaCode,jdbcType=VARCHAR},
+      BUSI_REG_GRID_CODE = #{busiRegGridCode,jdbcType=VARCHAR},
+      BUSI_REG_MICRO_AREA_CODE = #{busiRegMicroAreaCode,jdbcType=VARCHAR},
+      BUSI_REG_CODE = #{busiRegCode,jdbcType=VARCHAR},
+      CHANNEL_CLASS = #{channelClass,jdbcType=VARCHAR},
+      APPLY_REASON = #{applyReason,jdbcType=VARCHAR},
+      ADM_REG_NAME = #{admRegName,jdbcType=VARCHAR},
+      BUSI_REG_NAME = #{busiRegName,jdbcType=VARCHAR},
+      SYNC_CRM_FLAG = #{syncCrmFlag,jdbcType=VARCHAR},
+      WO_TITLE = #{woTitle,jdbcType=VARCHAR},
+      WO_BIG_TYPE = #{woBigType,jdbcType=VARCHAR},
+      BUSI_CODE = #{busiCode,jdbcType=VARCHAR},
+      ASSIGNEE = #{assignee,jdbcType=VARCHAR},
+      PRO_TERMINATION_DATE = #{proTerminationDate,jdbcType=TIMESTAMP},
+      TERMINATION_FLAG = #{terminationFlag,jdbcType=VARCHAR}
+    where WO_ID = #{woId,jdbcType=DECIMAL}
+  </update>
+</mapper>
